@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .margin {
+            display: inline-block;
+            top: 50%;
+            left: 50%;
+            position: fixed;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 3px 0 #be1212;
+        }
+    </style>
+</head>
+
+<body>
+    <button type="button" id="btn">颜色</button>
+    <div class="margin">
+        <div class="zc-cp">
+            <div class="zc-cp_main">
+                <div class="zc-cp_color-panel">
+                    <div class="zc-cp_card-head">预定义颜色列表</div>
+                    <div class="zc-cp_card-body">
+                        <div class="zc-cp_color-group">
+                            <i class="color-item"></i>
+                        </div>
+                        <div class="zc-cp_lh-10"></div>
+                        <div class="zc-cp_color-group">
+                            <i class="color-item"></i>
+                        </div>
+                    </div>
+                    <div class="zc-cp_card-head">预定义颜色列表</div>
+                    <div class="zc-cp_card-body">
+                        <div class="zc-cp_color-group">
+                            <i class="color-item"></i>
+                        </div>
+                        <div class="zc-cp_lh-10"></div>
+                        <div class="zc-cp_color-group">
+                            <i class="color-item"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="zc-cp_color-selector">
+                    <div class="zc-cp_color-value pointer">
+                        <canvas width="255" height="255"></canvas>
+                        <div class="zc-cp_sliding circle-sliding"></div>
+                    </div>
+                    <div class="zc-cp_lh-10"></div>
+                    <div class="zc-cp_color-gamut pointer">
+                        <canvas width="255" height="12"></canvas>
+                        <div class="zc-cp_sliding rect-sliding"></div>
+                    </div>
+                    <div class="zc-cp_lh-10"></div>
+                    <div class="zc-cp_color-alpha pointer">
+                        <div class="zc-cp_color-gradient"></div>
+                        <div class="zc-cp_sliding rect-sliding"></div>
+                    </div>
+                    <div class="zc-cp_lh-10"></div>
+                    <div class="zc-cp_form-group">
+                        <i class="zc-cp_block preview">&nbsp;</i>
+                        <i class="zc-cp_block value">#FF0000</i>
+                        <i class="zc-cp_block schema">HEX</i>
+                    </div>
+                    <div class="zc-cp_hr"></div>
+                    <div class="zc-cp_form-group">
+                        <i class="zc-cp_block clear">清除样式</i>
+                        <i class="zc-cp_block cancel">取消</i>
+                        <i class="zc-cp_block done">确定</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

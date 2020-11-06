@@ -1,0 +1,178 @@
+// 透明背景图片
+$bg-img: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+
+// 外壳
+.zc-cp {
+    display: inline-block;
+    font-size: 10px;
+    padding: 10px;
+    background-color: #f2f2f2;
+    box-shadow: 0 0 0 1px #e5e5e5;
+    * {
+        margin: 0;
+        padding: 0;
+        font-style: normal;
+    }
+    .pointer {
+        cursor: pointer;
+    }
+    .zc-cp_lh-10 {
+        display: block;
+        width: 100%;
+        height: 10px;
+    }
+    .zc-cp_hr {
+        margin: 5px 0 0 0;
+        padding: 0 0 5px 0;
+        border-top: 1px solid #e5e5e5;
+    }
+}
+
+// 主体
+.zc-cp_main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 10px;
+}
+
+// ------------------------------------------- 颜色列表 -------------------------------------------
+.zc-cp_color-panel {
+    width: 240px;
+    height: 384px;
+    background-color: #ffffff;
+    padding: 10px;
+}
+
+.zc-cp_card-head {
+    font-size: 16px;
+    color: #999;
+    padding: 2px 0 15px;
+}
+
+// 颜色组
+.zc-cp_color-group {
+    .color-item {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin: 2px;
+        border-radius: 2px;
+        cursor: pointer;
+        box-sizing: border-box;
+        &:hover {
+            box-shadow: 0 0 0 1px #5fb878;
+        }
+    }
+}
+
+// ------------------------------------------- 选择器 -------------------------------------------
+.zc-cp_color-selector {
+    padding: 10px;
+    background-color: #ffffff;
+    & > div {
+        display: flex;
+    }
+    // 滑块
+    .zc-cp_sliding {
+        border: 1px solid #fff;
+        position: absolute;
+        top: 0;
+        left: 100%;
+        box-shadow: 0 0 2px #c2c2c2;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    // 圆形滑块
+    .circle-sliding {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
+    // 矩形滑块
+    .rect-sliding {
+        width: 6px;
+        height: 100%;
+        transform: translateX(-50%);
+        background-color: #ffffff;
+    }
+}
+
+// 色值
+.zc-cp_color-value {
+    position: relative;
+}
+
+// 色域
+.zc-cp_color-gamut {
+    position: relative;
+    height: 12px;
+}
+
+// 透明度
+.zc-cp_color-alpha {
+    position: relative;
+    height: 12px;
+    background: $bg-img;
+}
+
+// 透明度的渐变条
+.zc-cp_color-gradient {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, #000000);
+}
+
+// 交互按钮集合
+.zc-cp_form-group {
+    // display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+// 交互按钮
+.zc-cp_block {
+    display: inline-block;
+    padding: 2px 5px;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin: 5px;
+    color: #666666;
+    &.preview {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        position: relative;
+        background: $bg-img;
+        & > i {
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            background-color: #ff0000;
+        }
+    }
+    &.value {
+        cursor: text;
+        border: 1px solid #c2c2c2;
+        flex-grow: 1;
+    }
+    &.schema {
+        width: 40px;
+        border: none;
+    }
+    &.clear {
+        flex-grow: 1;
+    }
+    &.cancel {
+        width: 40px;
+    }
+    &.done {
+        width: 40px;
+    }
+}
