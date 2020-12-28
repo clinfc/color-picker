@@ -3,7 +3,7 @@
  */
 
 import { $ } from "@/util/dom-query"
-import ColorPicker from "."
+import ColorPicker from ".."
 
 export function show(cp: ColorPicker) {
     //

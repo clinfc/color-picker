@@ -1,41 +1,47 @@
 /**
+ * @author fangzhicong
  * @deprecated 绑定 change
  */
 
 import { RGBAToHEX, RGBAToHSL, RGBAToSTR } from "@/util/color-conversion"
 import ColorPicker from "~/core"
-import ColorSelect from ".."
+import { Data } from "~/core/global/define"
 
-export default function bindChangeEvnet(cs: ColorSelect, cp: ColorPicker) {
-    const event = cp.event
-    const data = cs.data
-    const input = cs.root.query(".value")
-    const preview = cs.root.query(".preview>i")
-    const gtx = (cs.gcanvas.target as HTMLCanvasElement).getContext("2d") as CanvasRenderingContext2D
-    const vtx = (cs.vcanvas.target as HTMLCanvasElement).getContext("2d") as CanvasRenderingContext2D
+export default function bindChangeEvnet(cp: ColorPicker, doms: Data, rfn: Data) {
+    const { data, event, root } = cp
 
-    // 色域 change
+    const input = root.query(".value")
+    const preview = root.query(".preview>i")
+
+    // 色域条 canvas 的 CanvasRenderingContext2D API
+    const gtx = (doms.gcanvas.target as HTMLCanvasElement).getContext("2d") as CanvasRenderingContext2D
+    // 色值面板 canvas 的 CanvasRenderingContext2D API
+    const vtx = (doms.vcanvas.target as HTMLCanvasElement).getContext("2d") as CanvasRenderingContext2D
+
+    // 订阅色域 drag 发布的 change
     event.on(
         "change",
         function () {
             const [r, g, b] = gtx.getImageData(data.gx, 0, 1, 1).data
-            cs.renderColorValue(RGBAToSTR(r, g, b))
+            // 渲染色值面板
+            rfn.renderColorValue(RGBAToSTR(r, g, b))
         },
         3
     )
 
-    // 色值 change
+    // 订阅色值 drag 发布的 change
     event.on(
         "change",
         function () {
             const [r, g, b] = vtx.getImageData(data.vx, data.vy, 1, 1).data
             data.rgb = { r, g, b }
-            cs.renderColorOpacity()
+            // 渲染透明度条
+            rfn.renderColorOpacity()
         },
         2
     )
 
-    // 透明度 change
+    // 订阅透明度 drag 发布的 change
     event.on(
         "change",
         function () {
@@ -52,8 +58,9 @@ export default function bindChangeEvnet(cs: ColorSelect, cp: ColorPicker) {
                     data.value = RGBAToHSL(r, g, b, data.opacity)
                     break
             }
-            // 显示 预览/输入框
+            // 刷新预览框
             preview.css("background-color", data.value)
+            // 刷新输出框
             input.text(data.value)
         },
         1

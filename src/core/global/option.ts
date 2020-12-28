@@ -6,8 +6,8 @@ import { Option } from "./define"
 
 export default function createOption(): Option {
     return {
-        presetTitle: "预定义颜色列表",
-        customTitle: "自定义颜色列表",
+        listTitle: "颜色列表",
+        selectTitle: "颜色选择器",
         change(color: string) {},
         done(color: string) {},
         cancel() {},

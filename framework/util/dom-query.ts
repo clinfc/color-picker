@@ -144,9 +144,9 @@ export default class DomQuery {
     /**
      * nodeName（已被转化为小写）
      */
-    // public nodeName() {
-    //     return this.target.nodeName.toLowerCase()
-    // }
+    public nodeName() {
+        return this.target.nodeName.toLowerCase()
+    }
 
     /**
      * children
@@ -202,10 +202,10 @@ export default class DomQuery {
     /**
      * 隐藏元素
      */
-    // public hide() {
-    //     this.css("display", "none")
-    //     return this
-    // }
+    public hide() {
+        this.css("display", "none")
+        return this
+    }
 
     public html(html?: string) {
         if (html) {

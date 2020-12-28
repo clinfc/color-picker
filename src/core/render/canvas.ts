@@ -3,19 +3,18 @@
  */
 
 import { RGBAToSTR } from "@/util/color-conversion"
-import ColorSelect from ".."
+import { Data } from "~/core/global/define"
 
 /**
  * 生成渲染函数
  */
-export default function createRenderFn(cs: ColorSelect) {
+export default function createRenderFn(doms: Data, data: Data) {
     /**
      * 渲染色域条
      */
     function renderColorGamut() {
-        // debugger
-        const gtx = (cs.gcanvas.target as HTMLCanvasElement).getContext("2d") as CanvasRenderingContext2D
-        const x = cs.data.gw
+        const gtx = (doms.gcanvas.target as HTMLCanvasElement).getContext("2d") as CanvasRenderingContext2D
+        const x = data.gw
 
         let lg = gtx.createLinearGradient(0, 0, x, 0)
         let i = (x - 2) / 6
@@ -30,12 +29,12 @@ export default function createRenderFn(cs: ColorSelect) {
         gtx.fillRect(0, 0, x, 12)
     }
 
-    const vtx = (cs.vcanvas.target as HTMLCanvasElement).getContext("2d") as CanvasRenderingContext2D
+    const vtx = (doms.vcanvas.target as HTMLCanvasElement).getContext("2d") as CanvasRenderingContext2D
     /**
      * 渲染颜色面板
      */
     function renderColorValue(color: string) {
-        const { vw: w, vh: h } = cs.data
+        const { vw: w, vh: h } = data
 
         // 横向渐变
         let lgc = vtx.createLinearGradient(0, 0, w, 0)
@@ -56,8 +55,8 @@ export default function createRenderFn(cs: ColorSelect) {
      * 渲染透明度条
      */
     function renderColorOpacity() {
-        const { r, g, b } = cs.data.rgb
-        cs.agradient.css("background", `linear-gradient(to right, transparent, ${RGBAToSTR(r, g, b, 1)})`)
+        const { r, g, b } = data.rgb
+        doms.agradient.css("background", `linear-gradient(to right, transparent, ${RGBAToSTR(r, g, b, 1)})`)
     }
 
     return {

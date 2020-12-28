@@ -1,6 +1,6 @@
 /**
- * @description 数据结构 - 队列
  * @author fangzhicong
+ * @description 数据结构 - 队列
  */
 
 /** 自定义 forEach 回调函数的返回值 */

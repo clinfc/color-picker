@@ -3,18 +3,8 @@
  */
 
 import PColor from "~/assets/json/preset.json"
-import { $ } from "@/util/dom-query"
-import { Option, UserCustom } from "../../global/define"
-
-/** 卡片标题 */
-function cardHead(title: string) {
-    return `<div class="zc-cp_card-head">${title}</div>`
-}
-
-/** 卡片主体 */
-function cardBody(content: string) {
-    return `<div class="zc-cp_card-body">${content}</div>`
-}
+import { rowGap10, fieldsetCard } from "~/core/global/tpl"
+import { Option, UserCustom } from "~/core/global/define"
 
 /** 颜色列表 */
 function colorList(list: string[]) {
@@ -25,7 +15,7 @@ function colorList(list: string[]) {
 
 /** 颜色分组列表 */
 function colorGroupList(list: string[][]) {
-    return list.map((group) => colorList(group)).join(`<div class="zc-cp_lh-10"></div>`)
+    return list.map((group) => colorList(group)).join(rowGap10)
 }
 
 /** 颜色列表、悬浮 title */
@@ -37,7 +27,7 @@ function colorListAndTitle(list: [string, string][]) {
 
 /** 颜色分组列表、悬浮 title */
 function colorGroupListAndTitle(list: [string, string][][]) {
-    return list.map((group) => colorListAndTitle(group)).join(`<div class="zc-cp_lh-10"></div>`)
+    return list.map((group) => colorListAndTitle(group)).join(rowGap10)
 }
 
 /** 渲染用户自定义颜色列表 */
@@ -59,23 +49,14 @@ function renderCustomList(option: UserCustom) {
     return colorGroupListAndTitle(colors as [string, string][][])
 }
 
-export default function renderColorList(option: Option) {
-    const root = $.create(`<div class="zc-cp_color-panel"></div>`)
-
-    // 颜色列表的 HTML 字符串
-    let tpl: string
-
+export default function createCListTpl(option: Option) {
     // 渲染预定义颜色列表
-    tpl = `${cardHead(option.presetTitle)}${cardBody(colorGroupList(PColor))}`
+    const list: string[] = [colorGroupList(PColor)]
 
     // 渲染自定义颜色列表
     if (option.custom && option.custom.colors.length) {
-        const head = cardHead(option.customTitle)
-        const body = renderCustomList(option.custom)
-        tpl = `${head}${body}${tpl}`
+        list.push(renderCustomList(option.custom))
     }
 
-    root.html(tpl)
-
-    return root
+    return fieldsetCard(option.listTitle, `<div class="zc-cp_color-list">${list.join(rowGap10)}</div>`, "zc-cp_color-list-container")
 }
